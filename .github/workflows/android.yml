@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v3
 
       - name: Set up JDK 17
@@ -25,12 +25,11 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Build Debug APK
-        run: ./gradlew assembleDebug --stacktrace --info
+        run: |
+          ./gradlew clean assembleDebug --stacktrace --info
+          find app/build/outputs -name "*.apk"
 
-      - name: List build outputs
-        run: ls -R app/build/outputs || echo "No outputs found"
-
-      - name: Upload Debug APK
+      - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: ToDoWidget-APK
