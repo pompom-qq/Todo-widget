@@ -1,14 +1,13 @@
 plugins {
-    id 'com.android.application'
+    id 'com.android.application'  // ✅ 必須是 application
     id 'org.jetbrains.kotlin.android'
 }
 
 android {
-    namespace "com.example.todowidget"
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.todowidget"
+        applicationId "com.example.todowidget"  // ✅ 指定 package 名稱
         minSdk 24
         targetSdk 33
         versionCode 1
@@ -27,8 +26,3 @@ dependencies {
     implementation "androidx.appcompat:appcompat:1.6.1"
     implementation "com.google.android.material:material:1.9.0"
 }
-    - name: List build outputs
-      run: ls -R app/build/outputs
-
-    - name: Build Debug APK
-      run: ./gradlew assembleDebug --stacktrace --info
